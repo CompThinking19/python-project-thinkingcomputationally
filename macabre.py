@@ -5,52 +5,67 @@ import os
 # os.getcwd()
 
 #opens mortality table
-#declare function to store inputs
-#use string to enter age and gender
-#locate age and gender in mortality table in he csv file
-
 open_table = open("mortality_table.csv")
 read_the_file = csv.reader(open_table)
-# for item in read_the_file:
-#print item
 
+#use string to enter age and gender
 sex = raw_input("Are you male or female?")
-# inputs must be 'male', 'Male', 'female', 'Female'
-# allow capatalized inputs
-# raise TypeError
-# if sex =! str
-print sex
+    if raw_input == "male" or "female":
+        print sex.lower()
+    else:
+        print "Invalid input"
 
-age = raw_input("How old are you?")
-# raise TypeError if age =! int
+age = int(raw_input("How old are you?"))
 print age
-# life_expectancy = age, sex in the mortality_table
-# create multiple choice factors
+
+#set variables for the possible values in the mortality table
 data = []
 for row in reader
-    row = [all_ages, male_life_expectancy, female_life_expectancy]
-    all_ages = float(row[0])
-    male life expectancy = float(row[1])
-    female life expectancy = float(row[2])
-
-    if sex = male_life_expectancy and age = all_ages
-        data.append(row)
-    elif sex = female_life_expectancy
-        data.append(row)
-    return data
-
-drink = raw_input("How often do you drink? A) Zero - Once a week, B) Twice Several times a week C) Once daily D) Several times a day.... ")
+    male_life_expectancy = float(row[1])
+    female_life_expectancy = float(row[2])
+    topics = [male_life_expectancy, female_life_expectancy]
+    data.append(topics)
+##locate age and gender in mortality table in he csv file
+    #if sex == male_life_expectancy and all_ages:
+        #data.append(row)
+    #elif sex == female_life_expectancy:
+        #data.append(row)
+    # return data
+male_or_female = 0
+if sex == "female":
+    male_or_female = 1
+current_life_expectancy = data[age][male_or_female]
+drink = raw_input("""How often do you drink?
+A) Zero - Once a Week
+B) Twice Several times a Week
+C) At Least Once Daily
+D) Several Times a Day""" )
     if drink = "A":
-        data = data - 0
-    elif drink = "B"
-        data = data - 2
-    elif drink = "C"
-        data = data - 5
-    elif drink = "D"
-        data = data - 10
+        data = current_life_expectancy - 0
+    elif drink = "B":
+        data = current_life_expectancy - 2
+    elif drink = "C":
+        data = current_life_expectancy - 5
+    elif drink = "D":
+        data = current_life_expectancy - 10
     else "You typed an invalid answer. Please try again."
 
+smoke = raw_input("""How often do you smoke?
+A) Zero - Two Times a Week
+B) Several times a Week
+C) At Least Once Daily
+D) Several Times a Day""" )
+    if smoke = "A":
+        data = current_life_expectancy - 0
+    elif smoke = "B":
+        data = current_life_expectancy - 2
+    elif smoke = "C":
+        data = current_life_expectancy - 5
+    elif smoke = "D":
+        data = current_life_expectancy - 10
+    else "You typed an invalid answer. Please try again."
 
-
-#coding that needs to be completed:
-#simplify the mortality_table (get rid of death probability)
+print "According to your answers, you have" current_life_expectancy "years to live."
+#alternative ending
+data = 2019 + current_life_expectancy
+print "According to your answers, you are expected to die in " current_life_expectancy"."
