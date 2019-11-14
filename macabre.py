@@ -2,7 +2,12 @@
 import csv
 # import pandas as import pdb; pdb.set_trace()
 import os
-# os.getcwd()
+
+print """Welcome to Macabre, your own personalized death calculator.
+Today we will be calculating your life expectancy and/or probable year of death.
+DISCLAIMER: RESULTS PRESENTED IN MACABRE ARE NOT DEFINITIE.
+MACARBE CANNOT FACTOR FATAL OCCURENCES OR TERMINAL ILLNESSES.
+USE AT YOUR OWN RISK."""
 
 #opens mortality table
 open_table = open("mortality_table.csv")
@@ -25,45 +30,54 @@ for row in reader
     female_life_expectancy = float(row[2])
     topics = [male_life_expectancy, female_life_expectancy]
     data.append(topics)
-##locate age and gender in mortality table in he csv file
-    #if sex == male_life_expectancy and all_ages:
-        #data.append(row)
-    #elif sex == female_life_expectancy:
-        #data.append(row)
-    # return data
+
 male_or_female = 0
 if sex == "female":
     male_or_female = 1
 current_life_expectancy = data[age][male_or_female]
-drink = raw_input("""How often do you drink?
-A) Zero - Once a Week
-B) Twice Several times a Week
-C) At Least Once Daily
-D) Several Times a Day""" )
-    if drink = "A":
-        data = current_life_expectancy - 0
-    elif drink = "B":
-        data = current_life_expectancy - 2
-    elif drink = "C":
-        data = current_life_expectancy - 5
-    elif drink = "D":
-        data = current_life_expectancy - 10
-    else "You typed an invalid answer. Please try again."
+
+#Create a while loop if an invalid answer is input
+
+correct_answer = False
+while correct_answer == False:
+    drink = raw_input("""How often do you drink?
+    A) Zero - Once a Week
+    B) Twice Several times a Week
+    C) At Least Once Daily
+    D) Several Times a Day"""
+
+    if drink == "A":
+        correct_answer = True
+    elif drink == "B":
+        current_life_expectancy -=2
+        correct_answer = True
+    elif drink == "C":
+        current_life_expectancy -= 5
+        correct_answer = True
+    elif drink == "D":
+        current_life_expectancy -= 10
+        correct_answer = True
+    else:
+        print "You typed an invalid answer. Please try again."
 
 smoke = raw_input("""How often do you smoke?
 A) Zero - Two Times a Week
 B) Several times a Week
 C) At Least Once Daily
 D) Several Times a Day""" )
-    if smoke = "A":
-        data = current_life_expectancy - 0
-    elif smoke = "B":
-        data = current_life_expectancy - 2
-    elif smoke = "C":
-        data = current_life_expectancy - 5
-    elif smoke = "D":
-        data = current_life_expectancy - 10
-    else "You typed an invalid answer. Please try again."
+    if smoke == "A":
+        correct_answer = True
+    elif smoke == "B":
+        current_life_expectancy -=2
+        correct_answer = True
+    elif smoke == "C":
+        current_life_expectancy -= 5
+        correct_answer = True
+    elif smoke == "D":
+        current_life_expectancy -= 10
+        correct_answer = True
+    else:
+        print "You typed an invalid answer. Please try again."
 
 print "According to your answers, you have" current_life_expectancy "years to live."
 #alternative ending
