@@ -2,8 +2,7 @@
 import csv
 import os
 
-print
-"""
+print """
 Welcome to Macabre, your own personalized death calculator.
 Today we will be calculating your life expectancy.
 DISCLAIMER: RESULTS PRESENTED IN MACABRE ARE NOT DEFINITIE.
@@ -12,25 +11,25 @@ USE AT YOUR OWN RISK.
 """
 
 #opens mortality table in csv
-open_table = open("mortality_table.csv")
-read_the_file = csv.reader(open_table)
+open_table = open("mortality_table.csv", "rb")
+read_the_file = csv.reader(open_table, delimiter = ',')
 
 #use string to enter age and gender
-sex = raw_input("Are you male or female?")
+sex = raw_input("Are you male or female? ")
 if raw_input == "male" or "female":
-    print sex.lower
+    print sex.lower()
 else:
     print "Invalid input"
 
-age = int(raw_input("How old are you?"))
+age = int(raw_input("How old are you? "))
 print age
 
 #set variables for the possible values in the mortality table for male and female life expectancies
 #data holds this information
 data = []
-for row in reader:
-    male_life_expectancy = float(row[1])
-    female_life_expectancy = float(row[2])
+for row in read_the_file:
+    male_life_expectancy = (row[1])
+    female_life_expectancy = (row[2])
     topics = [male_life_expectancy, female_life_expectancy]
     data.append(topics)
 
@@ -38,7 +37,8 @@ for row in reader:
 male_or_female = 0
 if sex == "female":
     male_or_female = 1
-current_life_expectancy = data[age][male_or_female]
+current_life_expectancy = float(data[age][male_or_female])
+
 
 #Create a while loop if an invalid answer is input for health questions
 #selected answer subtracts years from life expectancy
@@ -46,11 +46,13 @@ correct_answer = False
 while correct_answer == False:
     drink = raw_input(
     """
+
     How many standard alcoholic drinks do you have per week?
     A) 0 - 7
     B) 8 - 14
     C) 14 - 25
     D) 25 +
+
     """
     )
 
@@ -68,29 +70,37 @@ while correct_answer == False:
     else:
         print "You typed an invalid answer. Please try again."
 
-smoke = raw_input(
-"""
-How many cigarettes do you smoke per day?
-A) 0
-B) less than 5
-C) 5 - 20
-D) 20 +
-"""
-)
-if smoke == "A":
-        correct_answer = True
-elif smoke == "B":
-        current_life_expectancy -=5
-        correct_answer = True
-elif smoke == "C":
-        current_life_expectancy -=9
-        correct_answer = True
-elif smoke == "D":
-        current_life_expectancy -=13
-        correct_answer = True
-else:
-    print "You typed an invalid answer. Please try again."
+correct_answer = False
+while correct_answer == False:
+    smoke = raw_input(
+    """
+
+    How many cigarettes do you smoke per day?
+    A) 0
+    B) less than 5
+    C) 5 - 20
+    D) 20 +
+
+    """
+    )
+    if smoke == "A":
+            correct_answer = True
+    elif smoke == "B":
+            current_life_expectancy -=5
+            correct_answer = True
+    elif smoke == "C":
+            current_life_expectancy -=9
+            correct_answer = True
+    elif smoke == "D":
+            current_life_expectancy -=13
+            correct_answer = True
+    else:
+        print "You typed an invalid answer. Please try again."
 
 #input final life expectancy (int) into the string
-stuff_in_string = "According to your answers, you have %d to live." % (current_life_expectancy)
+current_life_expectancy += age
+stuff_in_string = "According to your answers, you will die when you are %d years old." % (current_life_expectancy)
 print stuff_in_string
+current_life_expectancy += 2019
+more_stuff_in_string = "You will die in the year %d." % (current_life_expectancy)
+print more_stuff_in_string
