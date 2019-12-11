@@ -1,0 +1,11 @@
+Comments
+You did have several comments scattered throughout that helped orient me in your code. I would have liked to have seen more robust comments that answer "why" in addition to what, however.
+
+Code Quality
+You did well here. There really wasn't room for much encapsulation since it's a fairly straightforward process of stepping through the program, but you did well to handle the data coming in through the CSV and turn it to your own ends.
+
+Ambition
+You had a good, thoughtful README, and you did really well in articulating the big picture of this program. You also lay out interesting future directions.
+
+Aesthetics
+The program did what you wanted it to and, though there's room for expansion, was a fairly complete beginning of realizing your overall vision.
